@@ -14,12 +14,12 @@ const Products = () => {
 	}, [''])
 
 	return (
-		<Layout title='Clothes'>
+		<Layout title='Store'>
 			<div className='overflow-hidden'>
 				{loading && products.length < 1 ? (
 					<div>Loader...</div>
 				) : (
-					<div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+					<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>
 						{products.map(product => (
 							<ProductCard product={product} />
 						))}

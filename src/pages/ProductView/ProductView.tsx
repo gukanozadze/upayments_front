@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { convertDate } from '../../shared/shared'
 
 type UrlParams = {
 	id: string
@@ -41,38 +42,17 @@ const ProductView = () => {
 						<div className='mt-8'>
 							<div className='flex items-center'>
 								<h4 className='flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-indigo-600'>
-									Whats included
+									Info
 								</h4>
 								<div className='flex-1 border-t-2 border-gray-200' />
 							</div>
-							<ul className='mt-2 flex flex-col gap-2'>
-								<li className='flex items-start lg:col-span-1'>
-									<div className='flex-shrink-0'>
-										<CheckCircleIcon
-											className='h-5 w-5 text-green-400'
-											aria-hidden='true'
-										/>
-									</div>
-									<p className='ml-3 text-sm text-gray-700'>Free & Fast delivery</p>
-								</li>
-
-								<li className='flex items-start lg:col-span-1'>
-									<div className='flex-shrink-0'>
-										<CheckCircleIcon
-											className='h-5 w-5 text-green-400'
-											aria-hidden='true'
-										/>
-									</div>
-									<p className='ml-3 text-sm text-gray-700'>100% cotton</p>
-								</li>
-							</ul>
+							<div className='text-sm text-gray-400'>Created By - {entity.developerEmail}</div>
+							<div className='text-sm text-gray-400'>
+								Published At - {convertDate(entity.createdAt)}
+							</div>
 						</div>
 					</div>
-					<img
-						src={entity.avatar}
-						alt={'bike'}
-						className='w-full lg:w-2/5 object-center object-cover'
-					/>
+					<img src={entity.avatar} alt={entity.name} className='w-full lg:w-2/5 object-contain' />
 				</div>
 
 				<div className='py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12'>

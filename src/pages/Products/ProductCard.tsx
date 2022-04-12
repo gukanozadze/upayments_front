@@ -9,16 +9,16 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
 	return (
 		<div key={product.id} className='group relative'>
-			<div className='w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none'>
+			<div className='w-full min-h-80 bg-white rounded-md shadow-md overflow-hidden group-hover:shadow-lg group-hover:opacity-75  lg:h-80 lg:aspect-none'>
 				<img
 					src={product.avatar}
-					alt='clothe'
-					className='w-full h-full object-center object-cover lg:w-full lg:h-full'
+					alt={product.name}
+					className='w-full h-full object-contain hover-scale group-hover:scale-105 transition'
 				/>
 			</div>
-			<div className='mt-4 flex justify-between'>
+			<div className='mt-2 flex justify-between'>
 				<div>
-					<h3 className='text-sm text-gray-700'>
+					<h3 className='text-mg text-gray-700'>
 						<Link to={`product/${product.id}`}>
 							<span aria-hidden='true' className='absolute inset-0' />
 							{product.name}
@@ -26,7 +26,7 @@ const ProductCard = ({ product }: Props) => {
 					</h3>
 					{/* <p className='mt-1 text-sm text-gray-500'>{product.title}</p> */}
 				</div>
-				<p className='text-sm font-medium text-gray-900'>${product.price}</p>
+				<p className='text-lg font-medium text-gray-900'>${product.price}</p>
 			</div>
 		</div>
 	)

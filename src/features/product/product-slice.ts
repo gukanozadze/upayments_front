@@ -39,15 +39,14 @@ const productSlice = createSlice({
 			state.status = 'pending'
 			state.loading = true
 		})
-
+		builder.addCase(getOneProduct.pending, state => {
+			state.status = 'pending'
+			state.loading = true
+		})
 		builder.addCase(getOneProduct.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
 			state.entity = { ...state.entity, ...payload }
 			state.loading = false
-		})
-		builder.addCase(getOneProduct.pending, state => {
-			state.status = 'pending'
-			state.loading = true
 		})
 
 		builder.addCase(postProduct.fulfilled, (state, { payload }) => {

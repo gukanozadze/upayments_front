@@ -1,8 +1,6 @@
-export const pageNavigation = [
-	{ name: 'Products', to: '/' },
-]
+export const pageNavigation = [{ name: 'Products', to: '/' }]
 
-export const convertDate = (date: Date) => {
+export const convertDate = (date: string) => {
 	const monthNames = [
 		'January',
 		'February',
