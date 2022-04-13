@@ -41,11 +41,11 @@ const CreateProduct = () => {
 		dispatch(postProduct(data))
 	}
 
-	const renderCategoryOptions = () => {
-		return categoryList.map(({ id, name }) => {
+	const renderCategoryOptions = () =>
+		categoryList.map(({ id, name }) => {
 			return { value: id, label: name }
 		})
-	}
+
 	useEffect(() => {
 		if (status === 'success' && !postLoading) {
 			dispatch(resetProductStatus())
