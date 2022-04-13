@@ -8,7 +8,7 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
 	return (
-		<div key={product.id} className='group relative'>
+		<div className='group relative'>
 			<div className='w-full min-h-80 bg-white rounded-md shadow-sm overflow-hidden group-hover:shadow-lg group-hover:opacity-75  lg:h-80 lg:aspect-none'>
 				<img
 					src={product.avatar}

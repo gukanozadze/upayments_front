@@ -4,7 +4,6 @@ import { deleteOneProductCall, getAllProductsCall, getOneProductCall, postProduc
 import { ProductModel } from '../../shared/models/ProductModel'
 
 interface ProductState {
-	products: ProductModel[]
 	list: ProductModel[]
 	entity: ProductModel | null
 	status: string
@@ -14,7 +13,6 @@ interface ProductState {
 }
 
 const initialState: ProductState = {
-	products: [],
 	list: [],
 	entity: null,
 	status: '',
@@ -34,8 +32,8 @@ const productSlice = createSlice({
 	initialState,
 	reducers: {
 		resetProductState: () => initialState,
-		filterProducts: (state, { payload: selectedCategories }) => {
-			state.list = [...state.products.filter(product => selectedCategories.includes(product.category))]
+		resetProductStatus: state => {
+			state.status = ''
 		},
 	},
 	extraReducers: builder => {
@@ -46,7 +44,6 @@ const productSlice = createSlice({
 		builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
 			state.loading = false
 			state.list = payload
-			state.products = payload
 		})
 
 		// Get Product Details
@@ -64,9 +61,9 @@ const productSlice = createSlice({
 			state.postLoading = true
 		})
 		builder.addCase(postProduct.fulfilled, (state, { payload }) => {
-			state.status = 'successs'
+			state.status = 'success'
 			state.postLoading = false
-			state.list = [...state.list, payload]
+			state.list = [payload, ...state.list]
 		})
 
 		// Delete Product
@@ -75,7 +72,7 @@ const productSlice = createSlice({
 			state.deleteLoading = true
 		})
 		builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
-			state.status = 'successs'
+			state.status = 'success'
 			state.deleteLoading = false
 			state.list = [...state.list.filter(p => p.id.toString() !== payload)]
 		})
@@ -87,7 +84,7 @@ export const selectCurrentProduct = (state: RootState) => state.products.entity
 export const selectProductLoading = (state: RootState) => state.products.loading
 
 // Export each reducers function defined in createSlice
-export const { resetProductState, filterProducts } = productSlice.actions
+export const { resetProductState, resetProductStatus } = productSlice.actions
 
 // Export default the slice reducer
 export default productSlice.reducer

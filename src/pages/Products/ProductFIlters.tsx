@@ -1,31 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { getAllCategories, selectCategoryState } from '../../features/category/category-slice'
-import { filterProducts } from '../../features/product/product-slice'
 
-const ProductFilters = ({ selectedCategories, setSelected }: any) => {
+interface Props {
+	selectedCategories: string[]
+	setSelected: (args: string[]) => void
+}
+const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 	const dispatch = useAppDispatch()
 	const { loading, list } = useAppSelector(selectCategoryState)
 
 	useEffect(() => {
-		dispatch(getAllCategories())
+		if (list.length < 1) {
+			dispatch(getAllCategories())
+		}
 	}, [''])
 
 	useEffect(() => {
 		if (!loading) {
-			setSelected(list.map(c => c.name))
+			setSelected(list.map(c => c.id))
 		}
 	}, [list])
 
-	const handleChange = (name: string) => {
+	const handleChange = (id: string) => {
 		let newCategories = []
-		if (selectedCategories.includes(name)) {
+		if (selectedCategories.includes(id)) {
 			// Remove category from array
-			newCategories = selectedCategories.filter((c: string) => c !== name)
+			newCategories = selectedCategories.filter(c => c !== id)
 			setSelected(newCategories)
 		} else {
 			// Add category to array
-			newCategories = [...selectedCategories, name]
+			newCategories = [...selectedCategories, id]
 			setSelected(newCategories)
 		}
 	}
@@ -39,8 +44,8 @@ const ProductFilters = ({ selectedCategories, setSelected }: any) => {
 							type='checkbox'
 							id={category.name}
 							name={category.name}
-							checked={selectedCategories.includes(category.name)}
-							onChange={() => handleChange(category.name)}
+							checked={selectedCategories.includes(category.id)}
+							onChange={() => handleChange(category.id)}
 						/>
 						<label
 							className='form-check-label inline-block text-gray-800 pl-2'
