@@ -5,13 +5,11 @@ import { getAllProducts, selectProductState } from '../../features/product/produ
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import ProductCard from './ProductCard'
 import ProductFilters from './ProductFIlters'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 const Products = () => {
 	const dispatch = useAppDispatch()
 	const [selectedCategories, setSelected] = useState<string[]>([])
-	const { list: products, loading, status } = useAppSelector(selectProductState)
+	const { list: products, loading } = useAppSelector(selectProductState)
 
 	useEffect(() => {
 		dispatch(getAllProducts())
@@ -27,7 +25,6 @@ const Products = () => {
 
 	return (
 		<Layout title='Store'>
-			<ToastContainer />
 			<ProductFilters selectedCategories={selectedCategories} setSelected={setSelected} />
 
 			<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>

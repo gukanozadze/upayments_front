@@ -2,13 +2,17 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { getOneProduct, selectProductState } from '../../features/product/product-slice'
-import { useParams } from 'react-router-dom'
-import { CheckCircleIcon } from '@heroicons/react/outline'
-import { ToastContainer, toast } from 'react-toastify'
+import {
+	getOneProduct,
+	selectProductState,
+	deleteProduct,
+	resetProductStatus,
+} from '../../features/product/product-slice'
+import { useParams, useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css'
 import { convertDate } from '../../shared/shared'
 import TransparentLoader from '../../components/loaders/TransparentLoader'
+import LoadingSvg from './LoadingSvg'
 
 type UrlParams = {
 	id: string
@@ -16,12 +20,24 @@ type UrlParams = {
 
 const ProductView = () => {
 	const params = useParams<keyof UrlParams>() as UrlParams
+	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
-	const { entity, loading, status } = useAppSelector(selectProductState)
+	const { entity, loading, deleteLoading, status } = useAppSelector(selectProductState)
 
 	useEffect(() => {
 		dispatch(getOneProduct(params.id))
 	}, [''])
+
+	const onDeleteClick = () => {
+		dispatch(deleteProduct(params.id))
+	}
+
+	useEffect(() => {
+		if (status === 'success' && !deleteLoading) {
+			dispatch(resetProductStatus())
+			return navigate(`/`)
+		}
+	}, [status, deleteLoading])
 
 	if (!entity || loading) {
 		return (
@@ -35,8 +51,6 @@ const ProductView = () => {
 
 	return (
 		<Layout title='Back' backButton>
-			<ToastContainer />
-
 			<div className='flex shadow-lg flex-col sm:flex-row rounded-lg relative'>
 				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between '>
 					<div className='px-6 py-8 lg:p-12'>
@@ -64,8 +78,11 @@ const ProductView = () => {
 						<span className='ml-3 text-xl font-medium text-gray-500'>USD</span>
 					</div>
 					<div className='mt-6'>
-						<button className='shadow-md flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'>
-							Buy Now
+						<button
+							onClick={onDeleteClick}
+							className='shadow-md flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700'
+						>
+							{deleteLoading ? <LoadingSvg /> : 'Delete'}
 						</button>
 					</div>
 				</div>
