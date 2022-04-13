@@ -39,6 +39,7 @@ const productSlice = createSlice({
 		},
 	},
 	extraReducers: builder => {
+		// Get All Products
 		builder.addCase(getAllProducts.pending, state => {
 			state.loading = true
 		})
@@ -48,6 +49,7 @@ const productSlice = createSlice({
 			state.products = payload
 		})
 
+		// Get Product Details
 		builder.addCase(getOneProduct.pending, state => {
 			state.loading = true
 		})
@@ -56,6 +58,7 @@ const productSlice = createSlice({
 			state.loading = false
 		})
 
+		// Create Product
 		builder.addCase(postProduct.pending, state => {
 			state.status = 'pending'
 			state.postLoading = true
@@ -66,6 +69,7 @@ const productSlice = createSlice({
 			state.list = [...state.list, payload]
 		})
 
+		// Delete Product
 		builder.addCase(deleteProduct.pending, state => {
 			state.status = 'pending'
 			state.deleteLoading = true

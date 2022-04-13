@@ -3,9 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks'
 import { getAllCategories, selectCategoryState } from '../../features/category/category-slice'
 import { filterProducts } from '../../features/product/product-slice'
 
-const ProductFilters = () => {
-	const [selectedCategories, setSelected] = useState<any[]>([])
-
+const ProductFilters = ({ selectedCategories, setSelected }: any) => {
 	const dispatch = useAppDispatch()
 	const { loading, list } = useAppSelector(selectCategoryState)
 
@@ -23,15 +21,13 @@ const ProductFilters = () => {
 		let newCategories = []
 		if (selectedCategories.includes(name)) {
 			// Remove category from array
-			newCategories = selectedCategories.filter(c => c !== name)
+			newCategories = selectedCategories.filter((c: string) => c !== name)
 			setSelected(newCategories)
 		} else {
 			// Add category to array
 			newCategories = [...selectedCategories, name]
 			setSelected(newCategories)
 		}
-
-		dispatch(filterProducts(newCategories))
 	}
 	return (
 		<div className='flex justify-start gap-8'>

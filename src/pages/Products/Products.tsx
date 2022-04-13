@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import ListLoader from '../../components/loaders/ListLoader'
 import { getAllProducts, selectAllProducts, selectProductLoading } from '../../features/product/product-slice'
@@ -8,6 +8,7 @@ import ProductFilters from './ProductFIlters'
 
 const Products = () => {
 	const dispatch = useAppDispatch()
+	const [selectedCategories, setSelected] = useState<string[]>([])
 	const products = useAppSelector(selectAllProducts)
 	const loading = useAppSelector(selectProductLoading)
 
@@ -25,11 +26,13 @@ const Products = () => {
 
 	return (
 		<Layout title='Store'>
-			{products.length > 0 && <ProductFilters />}
+			<ProductFilters selectedCategories={selectedCategories} setSelected={setSelected} />
 			<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>
-				{products.map(product => (
-					<ProductCard key={product.id} product={product} />
-				))}
+				{products
+					.filter(({ category }) => selectedCategories.includes(category))
+					.map(product => (
+						<ProductCard key={product.id} product={product} />
+					))}
 			</div>
 		</Layout>
 	)

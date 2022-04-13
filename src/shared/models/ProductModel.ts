@@ -4,7 +4,7 @@ export interface ProductModel {
 	avatar: string
 	id: number
 	price: string
-	category: number
+	category: string
 	description: string
 	developerEmail: string
 }
