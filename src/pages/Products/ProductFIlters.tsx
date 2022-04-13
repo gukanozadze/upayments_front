@@ -4,8 +4,7 @@ import { getAllCategories, selectCategoryState } from '../../features/category/c
 
 interface Props {
 	selectedCategories: string[]
-	// eslint-disable-next-line no-unused-vars
-	setSelected: (args: string[]) => void
+	setSelected: any
 }
 const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 	const dispatch = useAppDispatch()

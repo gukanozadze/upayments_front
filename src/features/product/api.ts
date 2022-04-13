@@ -14,6 +14,6 @@ export async function postProductCall(data: any) {
 	return response.data
 }
 export async function deleteOneProductCall(id: string) {
-	const response = await axios.delete(`/products/${id}`)
+	await axios.delete(`/products/${id}`)
 	return id
 }
