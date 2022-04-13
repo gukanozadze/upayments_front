@@ -5,11 +5,15 @@ import { getAllProducts, selectProductState } from '../../features/product/produ
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import ProductCard from './ProductCard'
 import ProductFilters from './ProductFilters'
+import Search from './Search'
 
 const Products = () => {
 	const dispatch = useAppDispatch()
 	const [selectedCategories, setSelected] = useState<string[]>([])
-	const { list: products, loading } = useAppSelector(selectProductState)
+	const [searchTerm, setSearchTerm] = useState<string>('')
+	const { list, loading } = useAppSelector(selectProductState)
+
+	const products = list.filter(({ name }) => name.toLowerCase().includes(searchTerm))
 
 	useEffect(() => {
 		dispatch(getAllProducts())
@@ -26,6 +30,8 @@ const Products = () => {
 	return (
 		<Layout title='Store'>
 			<ProductFilters selectedCategories={selectedCategories} setSelected={setSelected} />
+
+			<Search setSearchTerm={setSearchTerm} />
 
 			<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>
 				{products

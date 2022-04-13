@@ -12,7 +12,7 @@ const CreateProduct = () => {
 	const dispatch = useAppDispatch()
 	const { postLoading, status } = useAppSelector(selectProductState)
 
-	const [name, setName] = useState('Guka')
+	const [name, setName] = useState('Guka T-Shirt')
 	const [category, setCategory] = useState('')
 	const [description, setDescription] = useState('BIG DESCRIPTION')
 	const [price, setPrice] = useState(99)
@@ -41,7 +41,7 @@ const CreateProduct = () => {
 		dispatch(postProduct(data))
 	}
 
-	const categoryOptions = categoryList.map(({ id, name }) => {
+	const categoryOptions = categoryList.map(({ name }) => {
 		return { value: name, label: name }
 	})
 
