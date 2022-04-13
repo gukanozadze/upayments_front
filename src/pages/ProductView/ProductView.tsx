@@ -8,6 +8,7 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { convertDate } from '../../shared/shared'
+import TransparentLoader from '../../components/loaders/TransparentLoader'
 
 type UrlParams = {
 	id: string
@@ -25,7 +26,9 @@ const ProductView = () => {
 	if (!entity || loading) {
 		return (
 			<Layout title='Back' backButton>
-				<div className='min-h-96'>Loader</div>
+				<div className='relative' style={{ minHeight: '400px' }}>
+					<TransparentLoader loading={loading} />
+				</div>
 			</Layout>
 		)
 	}
@@ -34,7 +37,7 @@ const ProductView = () => {
 		<Layout title='Back' backButton>
 			<ToastContainer />
 
-			<div className='flex shadow-lg flex-col sm:flex-row rounded-lg'>
+			<div className='flex shadow-lg flex-col sm:flex-row rounded-lg relative'>
 				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between '>
 					<div className='px-6 py-8 lg:p-12'>
 						<h3 className='text-2xl font-extrabold text-gray-900 sm:text-3xl'>{entity.name}</h3>
@@ -61,7 +64,7 @@ const ProductView = () => {
 						<span className='ml-3 text-xl font-medium text-gray-500'>USD</span>
 					</div>
 					<div className='mt-6'>
-						<button className='shadow-md relative flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'>
+						<button className='shadow-md flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'>
 							Buy Now
 						</button>
 					</div>

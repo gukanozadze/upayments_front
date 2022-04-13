@@ -4,17 +4,23 @@ import { deleteOneProductCall, getAllProductsCall, getOneProductCall, postProduc
 import { ProductModel } from '../../shared/models/ProductModel'
 
 interface ProductState {
+	products: ProductModel[]
 	list: ProductModel[]
 	entity: ProductModel | null
 	status: string
 	loading: boolean
+	postLoading: boolean
+	deleteLoading: boolean
 }
 
 const initialState: ProductState = {
+	products: [],
 	list: [],
 	entity: null,
 	status: '',
 	loading: false,
+	postLoading: false,
+	deleteLoading: false,
 }
 
 export const getAllProducts = createAsyncThunk('products/getAllProducts', getAllProductsCall)
@@ -28,46 +34,56 @@ const productSlice = createSlice({
 	initialState,
 	reducers: {
 		resetProductState: () => initialState,
+		filterProducts: (state, { payload: selectedCategories }) => {
+			state.list = [...state.products.filter(product => selectedCategories.includes(product.category))]
+		},
 	},
 	extraReducers: builder => {
-		builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
-			state.status = 'successs'
-			state.loading = false
-			state.list = payload
-		})
 		builder.addCase(getAllProducts.pending, state => {
-			state.status = 'pending'
 			state.loading = true
 		})
+		builder.addCase(getAllProducts.fulfilled, (state, { payload }) => {
+			state.loading = false
+			state.list = payload
+			state.products = payload
+		})
+
 		builder.addCase(getOneProduct.pending, state => {
-			state.status = 'pending'
 			state.loading = true
 		})
 		builder.addCase(getOneProduct.fulfilled, (state, { payload }) => {
-			state.status = 'successs'
 			state.entity = { ...state.entity, ...payload }
 			state.loading = false
 		})
 
+		builder.addCase(postProduct.pending, state => {
+			state.status = 'pending'
+			state.postLoading = true
+		})
 		builder.addCase(postProduct.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
+			state.postLoading = false
 			state.list = [...state.list, payload]
 		})
 
+		builder.addCase(deleteProduct.pending, state => {
+			state.status = 'pending'
+			state.deleteLoading = true
+		})
 		builder.addCase(deleteProduct.fulfilled, (state, { payload }) => {
 			state.status = 'successs'
+			state.deleteLoading = false
 			state.list = [...state.list.filter(p => p.id.toString() !== payload)]
 		})
 	},
 })
-
 export const selectProductState = (state: RootState) => state.products
 export const selectAllProducts = (state: RootState) => state.products.list
 export const selectCurrentProduct = (state: RootState) => state.products.entity
 export const selectProductLoading = (state: RootState) => state.products.loading
 
 // Export each reducers function defined in createSlice
-export const { resetProductState } = productSlice.actions
+export const { resetProductState, filterProducts } = productSlice.actions
 
 // Export default the slice reducer
 export default productSlice.reducer
