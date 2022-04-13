@@ -1,12 +1,7 @@
-import React, { Fragment } from 'react'
-import { pageNavigation } from '../shared/shared'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { Link, NavLink } from 'react-router-dom'
-
-function classNames(...classes: string[]) {
-	return classes.filter(Boolean).join(' ')
-}
+/* eslint-disable react/jsx-no-target-blank */
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { CodeIcon } from '@heroicons/react/outline'
 
 const Header = () => {
 	return (
@@ -23,7 +18,10 @@ const Header = () => {
 						</Link>
 					</div>
 				</div>
-				<div className=''>
+				<div className='flex gap-8 items-center'>
+					<a href='https://github.com/gukanozadze/upayments-front' target='_blank'>
+						<CodeIcon className='block h-6 w-6 text-white' />
+					</a>
 					<Link
 						to='/create'
 						className='inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-pointer'

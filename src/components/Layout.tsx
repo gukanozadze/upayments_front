@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
 import Header from './Header'
 import Title from './Title'
-import { useAppDispatch, useAppSelector } from '../hooks'
 
 const defaultProps = {
 	backButton: false,
