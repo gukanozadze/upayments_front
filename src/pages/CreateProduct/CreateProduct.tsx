@@ -32,7 +32,7 @@ const CreateProduct = () => {
 		const data = {
 			name,
 			description,
-			category: category || categoryList[0].id,
+			category: category || categoryList[0].name,
 			price: Number(price),
 			avatar,
 			developerEmail,
@@ -41,10 +41,9 @@ const CreateProduct = () => {
 		dispatch(postProduct(data))
 	}
 
-	const renderCategoryOptions = () =>
-		categoryList.map(({ id, name }) => {
-			return { value: id, label: name }
-		})
+	const categoryOptions = categoryList.map(({ id, name }) => {
+		return { value: name, label: name }
+	})
 
 	useEffect(() => {
 		if (status === 'success' && !postLoading) {
@@ -111,9 +110,12 @@ const CreateProduct = () => {
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
 							{categoryList.length > 0 ? (
 								<Select
-									options={renderCategoryOptions()}
-									defaultValue={{ value: categoryList[0].id, label: categoryList[0].name }}
-									onChange={o => setCategory(o?.value || '1')}
+									options={categoryOptions}
+									defaultValue={{
+										value: categoryList[0].name,
+										label: categoryList[0].name,
+									}}
+									onChange={option => option && setCategory(option.label)}
 									className='max-w-lg block w-full shadow-sm sm:max-w-xs sm:text-sm z-0'
 								/>
 							) : (

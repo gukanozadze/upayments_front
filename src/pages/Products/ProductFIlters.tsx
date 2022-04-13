@@ -18,17 +18,17 @@ const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 
 	useEffect(() => {
 		if (!loading) {
-			setSelected(list.map(c => c.id))
+			setSelected(list.map(c => c.name))
 		}
 	}, [list])
 
-	const handleChange = (id: string) => {
-		if (selectedCategories.includes(id)) {
+	const handleChange = (name: string) => {
+		if (selectedCategories.includes(name)) {
 			// Remove category from array
-			setSelected(selectedCategories.filter(c => c !== id))
+			setSelected(selectedCategories.filter(c => c !== name))
 		} else {
-			// Add category ID to array
-			setSelected([...selectedCategories, id])
+			// Add category name to array
+			setSelected([...selectedCategories, name])
 		}
 	}
 	return (
@@ -41,8 +41,8 @@ const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 							type='checkbox'
 							id={category.name}
 							name={category.name}
-							checked={selectedCategories.includes(category.id)}
-							onChange={() => handleChange(category.id)}
+							checked={selectedCategories.includes(category.name)}
+							onChange={() => handleChange(category.name)}
 						/>
 						<label
 							className='form-check-label inline-block text-gray-800 pl-1'
