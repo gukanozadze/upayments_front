@@ -22,10 +22,10 @@ const Layout = ({ title, children, backButton }: Props) => {
 				<Title title={title} backButton={backButton} />
 			</div>
 
-			<main className='-mt-32'>
-				<div className='max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8'>
-					<div className='bg-white rounded-lg shadow px-6 py-6 sm:px-12 '>
-						<div className='rounded-lg'>{children}</div>
+			<main className='-mt-32 '>
+				<div className='max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 '>
+					<div className='bg-gray-50 rounded-lg shadow px-6 py-6 sm:px-12 '>
+						<div className='rounded-lg '>{children}</div>
 					</div>
 				</div>
 			</main>

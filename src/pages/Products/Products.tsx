@@ -13,18 +13,20 @@ const Products = () => {
 		dispatch(getAllProducts())
 	}, [''])
 
+	if (loading) {
+		return (
+			<Layout title='Store'>
+				<div className='overflow-hidden'>Loader...</div>
+			</Layout>
+		)
+	}
+
 	return (
 		<Layout title='Store'>
-			<div className='overflow-hidden'>
-				{loading && products.length < 1 ? (
-					<div>Loader...</div>
-				) : (
-					<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>
-						{products.map(product => (
-							<ProductCard product={product} />
-						))}
-					</div>
-				)}
+			<div className='mt-6 grid grid-cols-1 gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-4'>
+				{products.map(product => (
+					<ProductCard product={product} />
+				))}
 			</div>
 		</Layout>
 	)

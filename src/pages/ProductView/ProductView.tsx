@@ -25,7 +25,7 @@ const ProductView = () => {
 	if (!entity || loading) {
 		return (
 			<Layout title='Back' backButton>
-				<div>Loader</div>
+				<div className='min-h-96'>Loader</div>
 			</Layout>
 		)
 	}
@@ -34,14 +34,14 @@ const ProductView = () => {
 		<Layout title='Back' backButton>
 			<ToastContainer />
 
-			<div className='flex rounded-lg shadow-lg flex-col sm:flex-row pb-6'>
-				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between'>
-					<div className='bg-white px-6 py-8 lg:p-12'>
+			<div className='flex shadow-lg flex-col sm:flex-row rounded-lg'>
+				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between '>
+					<div className='px-6 py-8 lg:p-12'>
 						<h3 className='text-2xl font-extrabold text-gray-900 sm:text-3xl'>{entity.name}</h3>
 						<p className='mt-6 text-base text-gray-500'>{entity.description}</p>
 						<div className='mt-8'>
 							<div className='flex items-center'>
-								<h4 className='flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-indigo-600'>
+								<h4 className='flex-shrink-0 pr-4 text-sm tracking-wider font-semibold uppercase text-indigo-600'>
 									Info
 								</h4>
 								<div className='flex-1 border-t-2 border-gray-200' />
@@ -61,11 +61,9 @@ const ProductView = () => {
 						<span className='ml-3 text-xl font-medium text-gray-500'>USD</span>
 					</div>
 					<div className='mt-6'>
-						<div className='rounded-md shadow'>
-							<button className='relative flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'>
-								Buy Now
-							</button>
-						</div>
+						<button className='shadow-md relative flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-900'>
+							Buy Now
+						</button>
 					</div>
 				</div>
 			</div>
