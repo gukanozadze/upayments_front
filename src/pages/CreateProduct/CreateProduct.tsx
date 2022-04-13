@@ -15,7 +15,7 @@ const CreateProduct = () => {
 	const [name, setName] = useState('Guka')
 	const [category, setCategory] = useState('')
 	const [description, setDescription] = useState('BIG DESCRIPTION')
-	const [price, setPrice] = useState<number | string>(99)
+	const [price, setPrice] = useState(99)
 	const [avatar, setAvatar] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
 	const [developerEmail, setDeveloperEmail] = useState('gukanozadze@gmail.com')
 
@@ -32,7 +32,7 @@ const CreateProduct = () => {
 		const data = {
 			name,
 			description,
-			category,
+			category: category || categoryList[0].id,
 			price: Number(price),
 			avatar,
 			developerEmail,
@@ -94,7 +94,7 @@ const CreateProduct = () => {
 								name='price'
 								id='price'
 								value={price}
-								onChange={e => setPrice(e.target.value)}
+								onChange={e => setPrice(e.target.valueAsNumber)}
 								autoComplete='given-name'
 								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
 							/>
@@ -111,9 +111,9 @@ const CreateProduct = () => {
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
 							{categoryList.length > 0 ? (
 								<Select
-									onChange={o => setCategory(o?.value || '1')}
 									options={renderCategoryOptions()}
 									defaultValue={{ value: categoryList[0].id, label: categoryList[0].name }}
+									onChange={o => setCategory(o?.value || '1')}
 									className='max-w-lg block w-full shadow-sm sm:max-w-xs sm:text-sm z-0'
 								/>
 							) : (
