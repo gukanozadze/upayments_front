@@ -4,7 +4,7 @@ import ListLoader from '../../components/loaders/ListLoader'
 import { getAllProducts, selectProductState } from '../../features/product/product-slice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import ProductCard from './ProductCard'
-import ProductFilters from './ProductFIlters'
+import ProductFilters from './ProductFilters'
 
 const Products = () => {
 	const dispatch = useAppDispatch()

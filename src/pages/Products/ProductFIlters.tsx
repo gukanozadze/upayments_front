@@ -23,15 +23,12 @@ const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 	}, [list])
 
 	const handleChange = (id: string) => {
-		let newCategories = []
 		if (selectedCategories.includes(id)) {
 			// Remove category from array
-			newCategories = selectedCategories.filter(c => c !== id)
-			setSelected(newCategories)
+			setSelected(selectedCategories.filter(c => c !== id))
 		} else {
-			// Add category to array
-			newCategories = [...selectedCategories, id]
-			setSelected(newCategories)
+			// Add category ID to array
+			setSelected([...selectedCategories, id])
 		}
 	}
 	return (
