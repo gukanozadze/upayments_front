@@ -3,7 +3,7 @@ import React from 'react'
 import ContentLoader from 'react-content-loader'
 
 const ListLoader = (props: any) => {
-	const rows = 3
+	const rows = 2
 	const columns = 5
 	const coverHeight = 285
 	const coverWidth = 220

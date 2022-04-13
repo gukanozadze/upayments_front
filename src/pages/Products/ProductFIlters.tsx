@@ -4,6 +4,7 @@ import { getAllCategories, selectCategoryState } from '../../features/category/c
 
 interface Props {
 	selectedCategories: string[]
+	// eslint-disable-next-line no-unused-vars
 	setSelected: (args: string[]) => void
 }
 const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
@@ -35,7 +36,7 @@ const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 		}
 	}
 	return (
-		<div className='flex justify-start gap-8'>
+		<div className='flex flex-wrap justify-start gap-y-4 gap-x-8'>
 			{list.map(category => {
 				return (
 					<div className='flex items-center' key={category.id}>
@@ -48,7 +49,7 @@ const ProductFilters = ({ selectedCategories, setSelected }: Props) => {
 							onChange={() => handleChange(category.id)}
 						/>
 						<label
-							className='form-check-label inline-block text-gray-800 pl-2'
+							className='form-check-label inline-block text-gray-800 pl-1'
 							htmlFor={category.name}
 						>
 							{category.name}

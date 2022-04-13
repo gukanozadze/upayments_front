@@ -9,7 +9,7 @@ const TransparentLoader = ({ loading }: { loading: boolean }) => {
 
 	return (
 		<animated.div
-			className='backdrop-blur-lg absolute left-0 top-0 w-full h-full flex justify-center items-center pointer-events-none'
+			className='z-10 backdrop-blur-lg absolute left-0 top-0 w-full h-full flex justify-center items-center pointer-events-none'
 			style={styles}
 		>
 			<ClipLoader color={'#4C4CDC'} loading={loading} size={100} />

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Layout from '../components/Layout'
-import TransparentLoader from '../components/loaders/TransparentLoader'
-import { postProduct, resetProductStatus, selectProductState } from '../features/product/product-slice'
-import { useAppDispatch, useAppSelector } from '../hooks'
+import Layout from '../../components/Layout'
+import TransparentLoader from '../../components/loaders/TransparentLoader'
+import { postProduct, resetProductStatus, selectProductState } from '../../features/product/product-slice'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import Select from 'react-select'
-import { getAllCategories, selectCategoryState } from '../features/category/category-slice'
+import { getAllCategories, selectCategoryState } from '../../features/category/category-slice'
 
 const CreateProduct = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const { postLoading, status } = useAppSelector(selectProductState)
 
-	const [name, setName] = useState('')
+	const [name, setName] = useState('Guka')
 	const [category, setCategory] = useState('')
-	const [description, setDescription] = useState('')
-	const [price, setPrice] = useState('')
+	const [description, setDescription] = useState('BIG DESCRIPTION')
+	const [price, setPrice] = useState<number | string>(99)
 	const [avatar, setAvatar] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
 	const [developerEmail, setDeveloperEmail] = useState('gukanozadze@gmail.com')
 
@@ -59,7 +59,7 @@ const CreateProduct = () => {
 
 			<form className='space-y-6' onSubmit={onSubmit}>
 				<div className='space-y-6 sm:space-y-5 mb-4 md:mb-12'>
-					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
+					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5'>
 						<label
 							htmlFor='name'
 							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
@@ -80,7 +80,7 @@ const CreateProduct = () => {
 						</div>
 					</div>
 
-					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5'>
+					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
 						<label
 							htmlFor='price'
 							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
@@ -114,21 +114,11 @@ const CreateProduct = () => {
 									onChange={o => setCategory(o?.value || '1')}
 									options={renderCategoryOptions()}
 									defaultValue={{ value: categoryList[0].id, label: categoryList[0].name }}
-									className='max-w-lg block w-full shadow-sm sm:max-w-xs sm:text-sm'
+									className='max-w-lg block w-full shadow-sm sm:max-w-xs sm:text-sm z-0'
 								/>
 							) : (
 								<div>Loading categories...</div>
 							)}
-
-							{/* <input
-								required
-								type='text'
-								name='category'
-								id='category'
-								value={category}
-								onChange={e => setCategory(e.target.value)}
-								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
-							/> */}
 						</div>
 					</div>
 
@@ -140,9 +130,8 @@ const CreateProduct = () => {
 							Description
 						</label>
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
-							<input
+							<textarea
 								required
-								type='text'
 								name='description'
 								id='description'
 								value={description}

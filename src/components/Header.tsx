@@ -19,7 +19,7 @@ const Header = () => {
 					</div>
 				</div>
 				<div className='flex gap-8 items-center'>
-					<a href='https://github.com/gukanozadze/upayments-front' target='_blank'>
+					<a href='https://github.com/gukanozadze/upayments_front' target='_blank'>
 						<CodeIcon className='block h-6 w-6 text-white' />
 					</a>
 					<Link

@@ -42,7 +42,7 @@ const ProductView = () => {
 	if (!entity || loading) {
 		return (
 			<Layout title='Back' backButton>
-				<div className='relative' style={{ minHeight: '400px' }}>
+				<div className='relative' style={{ minHeight: '360px' }}>
 					<TransparentLoader loading={loading} />
 				</div>
 			</Layout>
@@ -52,7 +52,7 @@ const ProductView = () => {
 	return (
 		<Layout title='Back' backButton>
 			<div className='flex shadow-lg flex-col sm:flex-row rounded-lg relative'>
-				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between '>
+				<div className='max-w-lg mr-auto overflow-hidden lg:max-w-none lg:flex justify-between'>
 					<div className='px-6 py-8 lg:p-12'>
 						<h3 className='text-2xl font-extrabold text-gray-900 sm:text-3xl'>{entity.name}</h3>
 						<p className='mt-6 text-base text-gray-500'>{entity.description}</p>
