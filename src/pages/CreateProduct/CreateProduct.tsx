@@ -187,6 +187,7 @@ const CreateProduct = () => {
 
 				<button
 					type='submit'
+					name='create'
 					className='shadow-md flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700'
 					disabled={postLoading}
 				>
