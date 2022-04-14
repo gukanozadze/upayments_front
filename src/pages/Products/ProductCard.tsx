@@ -20,7 +20,7 @@ const ProductCard = ({ product }: Props) => {
 				<div>
 					<h3 className='text-mg text-gray-700'>
 						<Link to={`product/${product.id}`}>
-							<span aria-hidden='true' className='absolute inset-0' />
+							<span data-test={product.name} aria-hidden='true' className='absolute inset-0' />
 							{product.name}
 						</Link>
 					</h3>

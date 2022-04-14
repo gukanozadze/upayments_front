@@ -73,7 +73,6 @@ const CreateProduct = () => {
 								id='name'
 								value={name}
 								onChange={e => setName(e.target.value)}
-								autoComplete='given-name'
 								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
 							/>
 						</div>
@@ -94,7 +93,6 @@ const CreateProduct = () => {
 								id='price'
 								value={price}
 								onChange={e => setPrice(e.target.valueAsNumber)}
-								autoComplete='given-name'
 								className='max-w-lg block w-full shadow-sm border p-2 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
 							/>
 						</div>
@@ -110,6 +108,7 @@ const CreateProduct = () => {
 						<div className='mt-1 sm:mt-0 sm:col-span-2'>
 							{categoryList.length > 0 ? (
 								<Select
+									name='select-category'
 									options={categoryOptions}
 									defaultValue={{
 										value: categoryList[0].name,
@@ -145,7 +144,7 @@ const CreateProduct = () => {
 
 					<div className='sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
 						<label
-							htmlFor='image'
+							htmlFor='avatar'
 							className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
 						>
 							Avatar
