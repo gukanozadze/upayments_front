@@ -2,7 +2,7 @@ describe('products', () => {
 
     it('user should create and delete product', () => {
         const randomName = 'Hoodie ' + Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
-        cy.viewport(1920, 1080) // Set viewport to 550px x 750px
+        cy.viewport(1440, 720) // Set viewport to 550px x 750px
 
         // User visits main page
         cy.visit('http://localhost:3000/')
