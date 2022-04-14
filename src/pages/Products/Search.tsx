@@ -23,6 +23,7 @@ const Search = ({ setSearchTerm }: any) => {
 				autoComplete='upayments-search'
 				className='shadow-lg focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md p-4 mt-4'
 				placeholder='Search...'
+				defaultValue={''}
 				onChange={handleChange}
 			/>
 		</div>
