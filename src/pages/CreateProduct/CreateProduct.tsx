@@ -14,10 +14,10 @@ const CreateProduct = () => {
 
 	const [name, setName] = useState('')
 	const [category, setCategory] = useState('')
-	const [description, setDescription] = useState('')
+	const [description, setDescription] = useState('Rest and recovery are essential parts of the athletic process, so you may as well go all in. Embrace comfort every time you slide into the loose fit and soft mélange fabric of this adidas hoodie.')
 	const [price, setPrice] = useState(99)
-	const [avatar, setAvatar] = useState('')
-	const [developerEmail, setDeveloperEmail] = useState('')
+	const [avatar, setAvatar] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
+	const [developerEmail, setDeveloperEmail] = useState('gukanozadze@gmail.com')
 
 	const { list: categoryList } = useAppSelector(selectCategoryState)
 
