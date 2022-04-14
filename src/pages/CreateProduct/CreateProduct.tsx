@@ -12,12 +12,12 @@ const CreateProduct = () => {
 	const dispatch = useAppDispatch()
 	const { postLoading, status } = useAppSelector(selectProductState)
 
-	const [name, setName] = useState('Guka T-Shirt')
+	const [name, setName] = useState('')
 	const [category, setCategory] = useState('')
-	const [description, setDescription] = useState('BIG DESCRIPTION')
+	const [description, setDescription] = useState('')
 	const [price, setPrice] = useState(99)
-	const [avatar, setAvatar] = useState('https://cf.shopee.ph/file/de6128223b8d2b854a1567ed335f2204')
-	const [developerEmail, setDeveloperEmail] = useState('gukanozadze@gmail.com')
+	const [avatar, setAvatar] = useState('')
+	const [developerEmail, setDeveloperEmail] = useState('')
 
 	const { list: categoryList } = useAppSelector(selectCategoryState)
 
